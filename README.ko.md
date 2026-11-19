@@ -1,14 +1,14 @@
-# Vibe Coding Study Quiz Program
+# Study Quiz Go
 
 [한국어](README.ko.md) | [English](README.md)
 
-바이브 코딩 공부용으로 만든 퀴즈 앱입니다. HTML, CSS, JavaScript만으로 동작합니다.
+[QUIZ LAB(Study-Quiz)](https://github.com/leekmny/Study-Quiz)의 JavaScript 로직을 Go로 옮긴 포팅판입니다. 문제 선택, 채점, 시간 초과, 학습 기록 통계와 교사 보고서 집계·CSV 생성을 Go로 처리합니다. 브라우저에서는 기존 HTML·CSS·JavaScript 화면이 Go WebAssembly 엔진을 사용하며, 네이티브 Go CLI에서도 같은 기능을 실행할 수 있습니다.
 
-## Go 포팅판 실행
+[Study-Quiz 커밋 `ce88328`](https://github.com/leekmny/Study-Quiz/commit/ce88328beff36b2a5f3273051397a22029aa8995)을 기준으로 포팅했습니다. 최초 포팅판의 [RECHECK 결과](verification/recheck-summary.json)에서는 Linux amd64에서 퀴즈 진행·학습 기록·교사 보고서 시나리오 **18개 중 18개**가 일치했습니다. 실행 방법과 비교 범위는 [Go CLI 및 검증 재현 가이드](docs/go-port-cli.md)에 있습니다.
 
-`port/go-quiz` 브랜치에서는 기존 화면에서 Go WebAssembly로 문제 선택, 채점,
-시간초과, 기록 정리·통계 및 교사 보고서 집계·CSV를 실행할 수 있습니다.
-Node.js 22 이상과 Go 1.24 이상 또는 Linux 컨테이너가 켜진 Docker Desktop을 준비하세요.
+## Go 브라우저 빌드 실행
+
+Node.js 22 이상과 Go 1.24 이상이 필요합니다. Go가 설치되어 있지 않으면 빌드가 Docker의 Linux 컨테이너를 사용합니다.
 
 ```sh
 npm ci
@@ -17,22 +17,15 @@ npm run build:go
 
 `dist-go/index.html`을 브라우저에서 열면 오프라인으로 실행됩니다.
 원본과 포팅판을 다른 주소나 파일 경로에서 열 경우에는 원본의 기록 JSON을
-내보낸 뒤 포팅판에서 가져오세요. [비교 및 CLI 재현 방법](docs/go-port-cli.md)
+내보낸 뒤 포팅판에서 가져오세요.
 
-![QUIZ LAB 한국어 미리보기](docs/preview-ko.png)
-
-## 실행
-
-`index.html`을 브라우저에서 열면 됩니다. 설치나 계정 없이 오프라인으로 사용할 수 있습니다.
-
-로컬 서버로 실행하려면 Node.js 22 이상에서:
+예제 입력으로 네이티브 Go CLI를 실행할 수 있습니다.
 
 ```sh
-npm ci
-npm start
+go run ./cmd/studyquiz verification/gameplay/speed.json
 ```
 
-브라우저에서 `http://localhost:4173`에 접속하세요.
+![QUIZ LAB 한국어 미리보기](docs/preview-ko.png)
 
 ## 기능
 
@@ -55,15 +48,18 @@ npm start
 ## 개발과 배포
 
 ```sh
+go test ./...
+go vet ./...
+npx playwright install chromium
+npm run test:go:browser
 npm test
 npm run check
-npx playwright install chromium
-npm run test:browser
-npm run build
 ```
 
 Windows의 브라우저 검사는 설치된 Edge를 사용합니다. 다른 환경에서는 Playwright Chromium을 사용하며, `PLAYWRIGHT_CHANNEL`로 채널을 지정할 수 있습니다.
 
-`dist/`만 정적 호스팅에 올리면 됩니다. 빌드에는 앱 파일과 빈 교사 보고서만 포함됩니다. 교사 보고서의 상대 등급은 모드·난이도 차이를 보정하지 않으므로 학습 참고용으로 사용하세요.
+`dist-go/`를 정적 호스팅에 올리면 됩니다. 빌드에는 앱 파일과 빈 교사 보고서가 포함됩니다. 교사 보고서의 상대 등급은 모드·난이도 차이를 보정하지 않으므로 학습 참고용으로 사용하세요.
+
+JavaScript 비교용 화면은 `npm start`를 실행하고 `http://localhost:4173`에서 열 수 있습니다. `npm run test:browser`는 이 화면을 검사하며, `npm run build`는 JavaScript 비교용 빌드를 `dist/`에 생성합니다.
 
 참고한 프로젝트는 [design notes](docs/design-notes.md)에 정리했습니다.

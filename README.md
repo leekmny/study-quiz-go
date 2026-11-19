@@ -1,27 +1,29 @@
-# Vibe Coding Study Quiz Program
+# Study Quiz Go
 
 [한국어](README.ko.md) | [English](README.md)
 
-A quiz app for vibe coding practice. Built with HTML, CSS, and JavaScript.
+This is the JavaScript-to-Go port of [QUIZ LAB (Study-Quiz)](https://github.com/leekmny/Study-Quiz). Go runs question selection, scoring, timeouts, saved-record statistics, and teacher report aggregation and CSV generation. The browser uses the original HTML, CSS, and JavaScript interface with the Go engine compiled to WebAssembly. The native Go CLI exposes the same operations for comparison and testing.
 
-On the `port/go-quiz` branch, run `npm ci` and `npm run build:go` with
-Go 1.24+ or Docker Desktop's Linux engine, then open `dist-go/index.html` offline.
-See [Go port and RECHECK reproduction](docs/go-port-cli.md).
+The port started from [Study-Quiz commit `ce88328`](https://github.com/leekmny/Study-Quiz/commit/ce88328beff36b2a5f3273051397a22029aa8995). The original port's [RECHECK run](verification/recheck-summary.json) matched **18/18** gameplay, saved-record, and teacher-report scenarios on Linux amd64. See the [Go CLI and reproduction guide](docs/go-port-cli.md) for the commands and comparison scope.
 
-![QUIZ LAB preview](docs/preview.png)
+## Run the Go browser build
 
-## Run
-
-Open `index.html` in a browser. No installation or account is needed, and the app works offline.
-
-For a local server, use Node.js 22 or later:
+Use Node.js 22 or later and Go 1.24 or later. If Go is unavailable, the build uses Docker with Linux containers.
 
 ```sh
 npm ci
-npm start
+npm run build:go
 ```
 
-Then open `http://localhost:4173`.
+Open `dist-go/index.html` in a browser. It works offline. To move records from QUIZ LAB opened at a different address or file path, export them as JSON and import them in this build.
+
+Run the native Go CLI with a sample request:
+
+```sh
+go run ./cmd/studyquiz verification/gameplay/speed.json
+```
+
+![QUIZ LAB preview](docs/preview.png)
 
 ## Features
 
@@ -44,13 +46,16 @@ Profiles and the latest 100 attempts stay in the current browser's storage. Ther
 ## Development
 
 ```sh
+go test ./...
+go vet ./...
+npx playwright install chromium
+npm run test:go:browser
 npm test
 npm run check
-npx playwright install chromium
-npm run test:browser
-npm run build
 ```
 
 Browser tests use installed Edge on Windows and Playwright Chromium elsewhere. Set `PLAYWRIGHT_CHANNEL` to select another channel.
 
-Deploy the contents of `dist/` to any static host. The build includes only app files and an empty teacher report. Teacher grades are relative to the imported group and do not adjust for different modes or difficulty levels.
+Deploy `dist-go/` to a static host. The build includes app files and an empty teacher report. Teacher grades are relative to the imported group and do not adjust for different modes or difficulty levels.
+
+Use `npm start` for the JavaScript reference UI at `http://localhost:4173`, and `npm run test:browser` for its browser tests. `npm run build` creates the JavaScript reference build in `dist/`.

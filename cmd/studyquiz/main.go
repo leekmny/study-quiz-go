@@ -7,7 +7,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/leekmny/Study-Quiz/internal/port"
+	"github.com/leekmny/study-quiz-go/internal/port"
 )
 
 func main() {

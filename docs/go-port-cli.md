@@ -40,7 +40,7 @@ The gameplay inputs in [verification/gameplay](../verification/gameplay) also ru
 
 ## RECHECK comparison
 
-Run the verifier from a Git clone that includes commit `ce88328beff36b2a5f3273051397a22029aa8995`. The verifier extracts the original JavaScript from that commit and stages it separately from the Go executable. Prepare a Linux amd64 RECHECK Docker image using the instructions in the [RECHECK repository](https://github.com/leekmny/Recheck).
+Run the verifier from a full clone of Study Quiz Go. The verifier extracts the original JavaScript from [Study-Quiz commit `ce88328`](https://github.com/leekmny/Study-Quiz/commit/ce88328beff36b2a5f3273051397a22029aa8995), which is in this repository's history, and stages it separately from the Go executable. Prepare a Linux amd64 RECHECK Docker image using the instructions in the [RECHECK repository](https://github.com/leekmny/Recheck).
 
 ```sh
 mkdir -p test-results
@@ -51,7 +51,7 @@ python verification/run-recheck.py --recheck ../Recheck --image recheck-porting:
 
 The output directory contains the manifest and its exact inputs, the RECHECK JSON and HTML reports, and the scenario summary. Choose a new directory for each run. On Windows, set the three Go build environment variables in PowerShell or build the executable in a Linux amd64 Go container.
 
-The [recorded run](../verification/recheck-summary.json) matched **18/18** scenarios
+The [original port's recorded run](../verification/recheck-summary.json) matched **18/18** scenarios
 using exact semantic JSON on a Linux x64 Docker worker. It covered eight gameplay,
 four saved-record and six teacher-report scenarios. The Go browser build uses
 WebAssembly for the same domain operations. The browser manages storage, and the

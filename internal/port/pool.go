@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	studyquiz "github.com/leekmny/Study-Quiz"
+	studyquiz "github.com/leekmny/study-quiz-go"
 )
 
 type Question struct {
