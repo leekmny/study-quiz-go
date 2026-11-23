@@ -19,9 +19,6 @@
           ><span class="brand-mark" aria-hidden="true">q.</span> QUIZ
           <span>LAB</span></a
         >
-        <small class="header-note" data-i18n="tagline"
-          >매일 조금씩, 더 넓은 세상</small
-        >
         <nav aria-label="Main navigation">
           <a
             class="teacher-link"
@@ -42,7 +39,6 @@
       <section id="setup" aria-labelledby="welcomeTitle">
         <div class="hero">
           <div class="hero-copy">
-            <p class="eyebrow">A LITTLE EVERY DAY</p>
             <h1 id="welcomeTitle" data-i18n="heroTitle">
               아는 즐거움을, 하나씩.
             </h1>
@@ -50,47 +46,24 @@
               한국사부터 과학, 지리와 예술까지. 짧은 퀴즈로 호기심을 채우고
               나만의 배움을 쌓아보세요.
             </p>
-            <div class="stats">
-              <span
-                ><b id="questionCount">0</b>
-                <small data-i18n="questionsLabel">개의 질문</small></span
-              ><span
-                ><b>4</b>
-                <small data-i18n="categoriesLabel">가지 분야</small></span
-              ><span
-                ><b>5</b>
-                <small data-i18n="challengesLabel">가지 도전</small></span
-              >
-            </div>
           </div>
-          <div class="hero-art" aria-hidden="true">
-            <div class="art-grid"></div>
-            <div class="orbit"></div>
-            <div class="study-note">
-              <span>THE CURIOSITY CLUB</span>
-              <div class="note-rule"></div>
-              <b>Stay<br />curious<span>✳</span></b>
-              <p>ONE QUESTION AT A TIME.</p>
+          <section class="subject-index" aria-labelledby="subjectIndexTitle">
+            <div class="subject-index-heading">
+              <h2 id="subjectIndexTitle" data-i18n="subjectsTitle">문제 분야</h2>
+              <p><b id="questionCount">0</b> <span data-i18n="questionsLabel">개의 질문</span></p>
             </div>
-            <span class="topic history"
-              >史 <small data-i18n="categoryHistory">한국사</small></span
-            >
-            <span class="topic science"
-              >✳ <small data-i18n="categoryScience">과학</small></span
-            >
-            <span class="topic world"
-              >◎ <small data-i18n="categoryGeography">지리</small></span
-            >
-            <span class="topic art"
-              >♫ <small data-i18n="categoryArts">예술과 문화</small></span
-            >
-          </div>
+            <ul>
+              <li><span data-i18n="categoryHistory">한국사</span></li>
+              <li><span data-i18n="categoryScience">과학</span></li>
+              <li><span data-i18n="categoryGeography">지리</span></li>
+              <li><span data-i18n="categoryArts">예술과 문화</span></li>
+            </ul>
+          </section>
         </div>
 
         <div class="workspace-grid">
           <div class="main-column">
             <section class="challenge-panel" aria-labelledby="challengeTitle">
-              <p class="eyebrow">FIND YOUR RHYTHM</p>
               <h2 id="challengeTitle" data-i18n="challengeTitle">
                 오늘의 도전을 골라보세요
               </h2>
@@ -204,7 +177,6 @@
               class="board learning-card"
               aria-labelledby="learningTitle"
             >
-              <p class="eyebrow">YOUR LEARNING, OVER TIME</p>
               <h2 id="learningTitle" data-i18n="learningTitle">
                 학습 대시보드
               </h2>
@@ -214,7 +186,6 @@
               <div id="learningDashboard"></div>
             </section>
             <section class="board ranking-card" aria-labelledby="rankingTitle">
-              <p class="eyebrow">YOUR PERSONAL BEST</p>
               <h2 id="rankingTitle" data-i18n="rankingTitle">나의 최고 기록</h2>
               <p class="section-note" data-i18n="rankingNote">
                 이 브라우저에 저장됩니다
@@ -225,10 +196,6 @@
           </div>
 
           <aside class="board profile-card" aria-labelledby="profileTitle">
-            <div class="profile-illustration" aria-hidden="true">
-              <span>✳</span><b>my little<br />study corner.</b><span>↗</span>
-            </div>
-            <p class="eyebrow">MAKE IT YOURS</p>
             <h2 id="profileTitle" data-i18n="profileTitle">나의 학습 공간</h2>
             <p class="profile-description" data-i18n="profileDescription">
               별명 하나로 나만의 배움을 기록하세요.
@@ -368,7 +335,6 @@
         hidden
         aria-labelledby="resultTitle"
       >
-        <p class="eyebrow">A LITTLE MORE LEARNED</p>
         <h1 id="resultTitle" data-i18n="resultTitle">
           오늘도 하나 더 배웠어요.
         </h1>
@@ -392,7 +358,7 @@
       <footer>
         <b>QUIZ LAB</b
         ><span data-i18n="footerTagline">호기심을 기록하는 작은 습관.</span
-        ><small>MADE FOR THE LOVE OF LEARNING.</small>
+        >
       </footer>
     </main>
     <script src="questions.js"></script>

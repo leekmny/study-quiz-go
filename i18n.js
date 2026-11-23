@@ -3,14 +3,12 @@
   const messages = {
     ko: {
       pageTitle: "QUIZ LAB · 작은 상식 노트",
-      tagline: "매일 조금씩, 더 넓은 세상",
       teacherDashboard: "선생님 대시보드 ↗",
       heroTitle: "아는 즐거움을, 하나씩.",
       heroLead:
         "한국사부터 과학, 지리와 예술까지. 짧은 퀴즈로 호기심을 채우고 나만의 배움을 쌓아보세요.",
       questionsLabel: "개의 질문",
-      categoriesLabel: "가지 분야",
-      challengesLabel: "가지 도전",
+      subjectsTitle: "문제 분야",
       challengeTitle: "오늘의 도전을 골라보세요",
       modeAll: "골고루 풀기",
       modeAllDesc: "네 분야를 오가며 새롭게",
@@ -105,14 +103,12 @@
     },
     en: {
       pageTitle: "QUIZ LAB · A little more curious",
-      tagline: "A little practice. A wider world.",
       teacherDashboard: "Teacher dashboard ↗",
       heroTitle: "One question. A little wiser.",
       heroLead:
         "Explore Korean history, science, geography, and the arts. Follow your curiosity and make a little room for something new.",
       questionsLabel: "questions",
-      categoriesLabel: "subjects",
-      challengesLabel: "ways to play",
+      subjectsTitle: "Subjects",
       challengeTitle: "Pick your next challenge",
       modeAll: "Mix it up",
       modeAllDesc: "A little of every subject",
